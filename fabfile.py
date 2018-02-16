@@ -16,7 +16,7 @@ def run_script(script: str):
 
 
 def update_sources_list():
-    put('sources.list', '/etc/apt/sources.list', use_sudo=True)
+    put('templates/sources.list', '/etc/apt/sources.list', use_sudo=True)
 
 
 def create_db(db_name: str):
