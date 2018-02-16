@@ -1,4 +1,9 @@
-from fabric.api import run, put
+import os
+
+from fabric.api import run, put, env
+
+env.hosts = [os.environ.get('VM_HOST', '')]
+env.password = os.environ.get('VM_PASSWORD', '')
 
 
 def hostname_check():
