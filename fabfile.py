@@ -31,13 +31,13 @@ def update_sources_list():
 def create_db(db_name: str):
     # could not change directory to "/root": Permission denied
     # it's ok if the above message is returned after the command is done
-    run(f'sudo -u postgres createdb {db_name}')
+    run(f'sudo -u postgres createdb {db_name};exit 0')
 
 
 def drop_db(db_name: str):
     # could not change directory to "/root": Permission denied
     # it's ok if the above message is returned after the command is done
-    run(f'sudo -u postgres dropdb {db_name}')
+    run(f'sudo -u postgres dropdb {db_name};exit 0')
 
 
 def migrate_db(db_name: str, dumpfile_path: str, remotepath='/root/'):
