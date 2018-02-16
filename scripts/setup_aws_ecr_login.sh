@@ -1,7 +1,7 @@
 # Config docker login
 mkdir -p ~/.docker
 mkdir -p ~/.aws
-echo '{"\n  credsStore": "ecr-login"\n}' > ~/.docker/config.json
+echo '{"credsStore": "ecr-login"}' > ~/.docker/config.json
 
 # Install docker-credential-ecr-login helper
 chmod +x ~/docker-credential-ecr-login
