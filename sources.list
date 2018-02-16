@@ -1,0 +1,26 @@
+deb http://us.archive.ubuntu.com/ubuntu artful main restricted
+deb-src http://us.archive.ubuntu.com/ubuntu artful main restricted
+
+deb http://us.archive.ubuntu.com/ubuntu artful-updates main restricted
+deb-src http://us.archive.ubuntu.com/ubuntu artful-updates main restricted
+
+deb http://us.archive.ubuntu.com/ubuntu artful universe
+deb-src http://us.archive.ubuntu.com/ubuntu artful universe
+deb http://us.archive.ubuntu.com/ubuntu artful-updates universe
+deb-src http://us.archive.ubuntu.com/ubuntu artful-updates universe
+
+deb http://us.archive.ubuntu.com/ubuntu artful multiverse
+deb-src http://us.archive.ubuntu.com/ubuntu artful multiverse
+deb http://us.archive.ubuntu.com/ubuntu artful-updates multiverse
+deb-src http://us.archive.ubuntu.com/ubuntu artful-updates multiverse
+
+deb http://us.archive.ubuntu.com/ubuntu artful-backports main restricted universe multiverse
+deb-src http://us.archive.ubuntu.com/ubuntu artful-backports main restricted universe multiverse
+
+deb http://us.archive.ubuntu.com/ubuntu artful-security main restricted
+deb-src http://us.archive.ubuntu.com/ubuntu artful-security main restricted
+deb http://us.archive.ubuntu.com/ubuntu artful-security universe
+deb-src http://us.archive.ubuntu.com/ubuntu artful-security universe
+deb http://us.archive.ubuntu.com/ubuntu artful-security multiverse
+deb-src http://us.archive.ubuntu.com/ubuntu artful-security multiverse
+
