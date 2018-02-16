@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 from fabric.api import run, put, env, local
 
@@ -37,12 +38,12 @@ def create_db(db_name: str):
 def drop_db(db_name: str):
     # could not change directory to "/root": Permission denied
     # it's ok if the above message is returned after the command is done
-    run(f'sudo -u postgres dropdb {db_name};exit 0')
+    run(f'sudo -u postgres dropdb {db_name}')
 
 
-def migrate_db(db_name: str, dumpfile_path: str, remotepath='/root/'):
-    send_dumped_file(db_name, dumpfile_path)
-    file_name = dumpfile_path.split('/')[-1]
+def migrate_db(db_name: str, dumpfile_path='', remotepath='/root/'):
+    file_name = f'{db_name}_{datetime.today().date()}' if not dumpfile_path else dumpfile_path
+    send_dumped_file(db_name, file_name)
     restore_db(db_name, remotepath + file_name)
 
 
