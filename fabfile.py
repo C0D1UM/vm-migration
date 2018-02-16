@@ -7,7 +7,11 @@ def hostname_check():
 
 def send_dir(localpath: str, remotepath: str, mode=None):
     run(f'mkdir -p {remotepath}')
-    put(localpath, remotepath, mode)
+    put(localpath, remotepath, mode=mode)
+
+
+def send_file(localpath: str, remotepath: str, mode=None):
+    put(localpath, remotepath, mode=mode)
 
 
 def run_script(script: str):
