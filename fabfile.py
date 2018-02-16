@@ -1,6 +1,6 @@
 import os
 
-from fabric.api import run, put, env
+from fabric.api import run, put, env, local
 
 env.hosts = [os.environ.get('VM_HOST', '')]
 env.password = os.environ.get('VM_PASSWORD', '')
@@ -32,3 +32,29 @@ def create_db(db_name: str):
     # could not change directory to "/root": Permission denied
     # it's ok if the above message is returned after the command is done
     run(f'sudo -u postgres createdb {db_name}')
+
+
+def drop_db(db_name: str):
+    # could not change directory to "/root": Permission denied
+    # it's ok if the above message is returned after the command is done
+    run(f'sudo -u postgres dropdb {db_name}')
+
+
+def migrate_db(db_name: str, dumpfile_path: str, remotepath='/root/'):
+    send_dumped_file(db_name, dumpfile_path)
+    file_name = dumpfile_path.split('/')[-1]
+    restore_db(db_name, remotepath + file_name)
+
+
+def send_dumped_file(db_name: str, dumpfile_path: str, remotepath='/root/'):
+    local(f'pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f "{dumpfile_path}" {db_name}')
+    put(dumpfile_path, remotepath)
+    local(f'rm {dumpfile_path}') 
+
+
+def restore_db(db_name: str, file_name: str):
+    run(f'pg_restore -c -h localhost -p 5432 -U postgres -d {db_name} -v {file_name}')
+
+
+def update_postgres_password(password: str):
+    run(f'sudo -u postgres psql -c "ALTER USER postgres PASSWORD {password};exit 0"')
