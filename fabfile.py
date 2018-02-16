@@ -58,4 +58,4 @@ def restore_db(db_name: str, file_name: str):
 
 
 def update_postgres_password(password: str):
-    run(f'sudo -u postgres psql -c "ALTER USER postgres PASSWORD {password};";exit 0')
+    run('sudo -u postgres psql -c "ALTER USER postgres PASSWORD {};";exit 0'.format(f"'{password}'"))
