@@ -44,13 +44,13 @@ def migrate_db(db_name: str, dumpfile_path='', remotepath='/root/'):
 
 
 def send_dumped_file(db_name: str, dumpfile_path: str, remotepath='/root/'):
-    local(f'pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f "{dumpfile_path}" {db_name}')
+    local(f'pg_dump -h localhost -p 5432 -U postgres -F c -b -v -f "{dumpfile_path}" {db_name};exit 0')
     put(dumpfile_path, remotepath)
-    local(f'rm {dumpfile_path}') 
+    local(f'rm {dumpfile_path};exit 0') 
 
 
 def restore_db(db_name: str, file_name: str):
-    run(f'pg_restore -c -h localhost -p 5432 -U postgres -d {db_name} -v {file_name}')
+    run(f'pg_restore -c -h localhost -p 5432 -U postgres -d {db_name} -v {file_name};exit 0')
 
 
 def update_postgres_password(password: str):
