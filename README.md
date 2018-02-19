@@ -15,23 +15,23 @@ First of all, you need to provide the remote host and password.
 export VM_HOST=<user@ip_address>
 export VM_PASSWORD=<secret>
 ```
-- see a list of Fabric commands
+see a list of Fabric commands
 ```
 fab -l
 ```
-- check host name of remote server
+check host name of remote server
 ```
 fab hostname_check
 ```
-- send file to remote host
+send file to remote host
 ```
 fab send_file:<local_file_path>,<remote_file_path>
 ```
-- migrate database
+migrate database
 ```
 fab migrate_db:<db_name>
 ```
-- run script
+run script
 ```
 fab run_script:<script_file_path>
 ```
