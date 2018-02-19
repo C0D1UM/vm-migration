@@ -30,14 +30,10 @@ def update_sources_list():
 
 
 def create_db(db_name: str):
-    # could not change directory to "/root": Permission denied
-    # it's ok if the above message is returned after the command is done
-    run(f'sudo -u postgres createdb {db_name};exit 0')
+    run(f'sudo -u postgres createdb {db_name}')
 
 
 def drop_db(db_name: str):
-    # could not change directory to "/root": Permission denied
-    # it's ok if the above message is returned after the command is done
     run(f'sudo -u postgres dropdb {db_name}')
 
 
@@ -59,3 +55,13 @@ def restore_db(db_name: str, file_name: str):
 
 def update_postgres_password(password: str):
     run('sudo -u postgres psql -c "ALTER USER postgres PASSWORD {};";exit 0'.format(f"'{password}'"))
+
+
+def set_up_minio(password: str, username='minio', url='http://localhost:9000'):
+    with open('scripts/install_minio.sh') as file:
+        run(file.read())
+
+    run(f'mc config host add minio {url} {username} {password}')
+
+    with open('scripts/update_mino_policy.sh') as file:
+        run(file.read())

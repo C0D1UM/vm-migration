@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # install postgres
 sudo apt-get update -y
 sudo apt-get install -y postgresql-9.6 postgresql-client-9.6 postgresql-contrib-9.6 libpq-dev

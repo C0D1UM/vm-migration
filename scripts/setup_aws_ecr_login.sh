@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Config docker login
 mkdir -p ~/.docker
 mkdir -p ~/.aws
