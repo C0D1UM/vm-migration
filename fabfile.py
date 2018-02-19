@@ -30,11 +30,11 @@ def update_sources_list():
 
 
 def create_db(db_name: str):
-    run(f'sudo -u postgres createdb {db_name}')
+    run(f'sudo -u postgres createdb {db_name};exit 0')
 
 
 def drop_db(db_name: str):
-    run(f'sudo -u postgres dropdb {db_name}')
+    run(f'sudo -u postgres dropdb {db_name};exit 0')
 
 
 def migrate_db(db_name: str, dumpfile_path='', remotepath='/root/'):
@@ -61,7 +61,7 @@ def set_up_minio(password: str, username='minio', url='http://localhost:9000'):
     with open('scripts/install_minio.sh') as file:
         run(file.read())
 
-    run(f'mc config host add minio {url} {username} {password}')
+    run(f'mc config host add minio {url} {username} {password} S3v4')
 
     with open('scripts/update_mino_policy.sh') as file:
         run(file.read())
