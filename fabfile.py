@@ -65,3 +65,14 @@ def set_up_minio(password: str, username='minio', url='http://localhost:9000'):
 
     with open('scripts/update_mino_policy.sh') as file:
         run(file.read())
+
+
+def setup_letsencrypt(email: str, domain: str):
+    with open('scripts/install_letsencrypt.sh') as file:
+        run(file.read())    
+    
+    run(f'letsencrypt certonly --standalone --renew-by-default --email {email} -d {domain}')
+    run(f'sudo echo "#!/usr/bin/env bash" > /etc/cron.monthly/renew_letsencrypt.sh')
+    run(f'sudo echo "/usr/bin/letsencrypt certonly --standalone --renew-by-default
+           --email {email} -d {domain}" >> /etc/cron.monthly/renew_letsencrypt.sh')
+    run('sudo chmod +x /etc/cron.monthly/renew_letsencrypt.sh')
