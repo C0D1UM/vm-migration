@@ -11,7 +11,7 @@ def hostname_check():
     run('hostname')
 
 
-def send_dir(localpath: str, remotepath: str, mode=None):
+def send_dir(localpath: str, remotepath='/root/', mode=None):
     run(f'mkdir -p {remotepath}')
     put(localpath, remotepath, mode=mode)
 
