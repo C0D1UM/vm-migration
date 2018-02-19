@@ -23,11 +23,15 @@ fab -l
 ```
 fab hostname_check
 ```
-- send file to 
+- send file to remote host
 ```
 fab send_file:<local_file_path>,<remote_file_path>
 ```
 - migrate database
 ```
 fab migrate_db:<db_name>
+```
+- run script
+```
+fab run_script:<script_file_path>
 ```
