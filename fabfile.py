@@ -50,7 +50,7 @@ def send_dumped_file(db_name: str, dumpfile_path: str, remotepath='/root/'):
 
 
 def restore_db(db_name: str, file_name: str):
-    run(f'pg_restore -c -h localhost -p 5432 -U postgres -d {db_name} -v {file_name};exit 0')
+    run(f'pg_restore -h localhost -p 5432 -U postgres -d {db_name} -v {file_name};exit 0')
 
 
 def update_postgres_password(password: str):
