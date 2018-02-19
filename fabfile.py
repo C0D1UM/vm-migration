@@ -72,7 +72,7 @@ def setup_letsencrypt(email: str, domain: str):
         run(file.read())    
     
     run(f'letsencrypt certonly --standalone --renew-by-default --email {email} -d {domain}')
-    run(f'sudo echo "#!/usr/bin/env bash" > /etc/cron.monthly/renew_letsencrypt.sh')
-    run(f'sudo echo "/usr/bin/letsencrypt certonly --standalone --renew-by-default
-           --email {email} -d {domain}" >> /etc/cron.monthly/renew_letsencrypt.sh')
+    run('sudo echo "#!/usr/bin/env bash" > /etc/cron.monthly/renew_letsencrypt.sh')
+    run('sudo echo "/usr/bin/letsencrypt certonly --standalone --renew-by-default'
+        f' --email {email} -d {domain}" >> /etc/cron.monthly/renew_letsencrypt.sh')
     run('sudo chmod +x /etc/cron.monthly/renew_letsencrypt.sh')
