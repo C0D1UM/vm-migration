@@ -70,7 +70,8 @@ def set_up_minio(password: str, username='minio', url='http://localhost:9000'):
 def setup_letsencrypt(email: str, domain: str):
     with open('scripts/install_letsencrypt.sh') as file:
         run(file.read())    
-    
+
+    run('service nginx stop')    
     run(f'letsencrypt certonly --standalone --renew-by-default --email {email} -d {domain}')
     run('sudo echo "#!/usr/bin/env bash" > /etc/cron.monthly/renew_letsencrypt.sh')
     run('sudo echo "/usr/bin/letsencrypt certonly --standalone --renew-by-default'
